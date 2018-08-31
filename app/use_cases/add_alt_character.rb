@@ -24,7 +24,7 @@ class AddAltCharacter
   end
 
   def add_to_user
-    unless @user.alt_characters.include? @alt_character
+    unless (@user.provider == @alt_character.provider && @user.uid == @alt_character.uid) || @user.alt_characters.include? @alt_character
       @user.alt_characters << @alt_character
       @user.save
     end
