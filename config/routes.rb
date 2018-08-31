@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/sync', to: 'sync#index'
   get '/settings/edit', to: 'settings#edit'
   put '/settings', to: 'settings#update'
+  post '/synchronize', to: 'sync#synchronize'
 end

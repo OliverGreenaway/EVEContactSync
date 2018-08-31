@@ -24,6 +24,6 @@
 <%= link_to "Add a Character", user_crest_omniauth_authorize_path %>
 <ul>
   <% current_user.alt_characters.each do |alt_character| %>
-    <li><%= alt_character.name %></li>
+    <li><%= alt_character.name %> <%= button_to "Sync", synchronize_path(params: {alt_character_id: alt_character.id}), method: :post %></li>
   <% end %>
 </ul>

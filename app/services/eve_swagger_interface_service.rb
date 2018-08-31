@@ -34,6 +34,20 @@ class EveSwaggerInterfaceService
     end
   end
 
+  def create_contacts(standing:, contacts:)
+    response = self.class.post(
+      "/characters/#{@user.character_id}/contacts/",
+      headers: {
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      },
+      body: contacts.to_json,
+      query: {
+        standing: standing,
+        watched: false
+      }.merge(base_params.merge(authorize_params)))
+  end
+
   def public_information
     return @public_information if @public_information
     response = self.class.get("/characters/#{@user.character_id}/", query: base_params)
