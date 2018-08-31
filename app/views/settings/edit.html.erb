@@ -1,0 +1,15 @@
+<%= form_for(current_user.settings, url: settings_path, html: { method: :put }) do |f| %>
+  <%= f.label :sync_char_contacts do %>
+    <%= f.check_box :sync_char_contacts %>
+    Sync Character Contacts
+  <% end %></br>
+  <%= f.label :sync_corp_contacts do %>
+    <%= f.check_box :sync_corp_contacts %>
+    Sync Corporation Contacts
+  <% end %></br>
+  <%= f.label :sync_ally_contacts do %>
+    <%= f.check_box :sync_ally_contacts %>
+    Sync Alliance Contacts
+  <% end %></br>
+  <%= f.submit "Update" %>
+<% end %>

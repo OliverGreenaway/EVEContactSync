@@ -2,9 +2,20 @@
 <%= image_tag "https://imageserver.eveonline.com/Character/#{current_user.character_id}_128.jpg" %>
 <h1>Name</h1>
 <%= current_user.name %>
-<!-- <h1>Character Contacts</h1>
-<%= @char_contacts %>
-<h1>Corporation Contacts</h1>
-<%= @corp_contacts %>
-<h1>Alliance Contacts</h1>
-<%= @ally_contacts %> -->
+
+<h1>Settings</h1>
+<table>
+  <tr>
+    <td>Sync Character Contacts</td>
+    <td><%= current_user.settings.sync_char_contacts %></td>
+  </tr>
+  <tr>
+    <td>Sync Corporation Contacts</td>
+    <td><%= current_user.settings.sync_corp_contacts %></td>
+  </tr>
+  <tr>
+    <td>Sync Alliance Contacts</td>
+    <td><%= current_user.settings.sync_ally_contacts %></td>
+  </tr>
+</table>
+<%= link_to "Edit Settings", settings_edit_path %>

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180830062328) do
+ActiveRecord::Schema.define(version: 20180830230752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "settings", force: :cascade do |t|
+    t.boolean "sync_char_contacts", default: false
+    t.boolean "sync_corp_contacts", default: false
+    t.boolean "sync_ally_contacts", default: false
+    t.integer "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider"
@@ -25,6 +32,7 @@ ActiveRecord::Schema.define(version: 20180830062328) do
     t.integer "token_expiry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "settings_id"
   end
 
 end

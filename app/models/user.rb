@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[crest]
+  has_one :settings
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -8,6 +9,7 @@ class User < ApplicationRecord
       user.token = auth.credentials.token
       user.refresh_token = auth.credentials.refresh_token
       user.token_expiry = auth.credentials.expires_at
+      user.settings = Settings.create
     end
   end
 
