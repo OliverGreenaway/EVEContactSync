@@ -19,3 +19,11 @@
   </tr>
 </table>
 <%= link_to "Edit Settings", settings_edit_path %>
+
+<h1>Alt Characters</h1>
+<%= link_to "Add a Character", user_crest_omniauth_authorize_path %>
+<ul>
+  <% current_user.alt_characters.each do |alt_character| %>
+    <li><%= alt_character.name %></li>
+  <% end %>
+</ul>
