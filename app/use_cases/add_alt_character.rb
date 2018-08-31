@@ -21,11 +21,9 @@ class AddAltCharacter
       alt_character.refresh_token = @alt_details.credentials.refresh_token
       alt_character.token_expiry = @alt_details.credentials.expires_at
     end
-    byebug
   end
 
   def add_to_user
-    byebug
     unless @user.alt_characters.include? @alt_character
       @user.alt_characters << @alt_character
       @user.save
