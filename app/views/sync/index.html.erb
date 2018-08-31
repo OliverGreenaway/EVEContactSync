@@ -1,29 +1,60 @@
-<h1>Avatar</h1>
-<%= image_tag "https://imageserver.eveonline.com/Character/#{current_user.character_id}_128.jpg" %>
-<h1>Name</h1>
-<%= current_user.name %>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="text-center bordered-container">
+      <h3><%= current_user.name %></h3>
+      <%= image_tag "https://imageserver.eveonline.com/Character/#{current_user.character_id}_128.jpg", class: 'avatar-img' %><br>
+    </div>
 
-<h1>Settings</h1>
-<table>
-  <tr>
-    <td>Sync Character Contacts</td>
-    <td><%= current_user.settings.sync_char_contacts %></td>
-  </tr>
-  <tr>
-    <td>Sync Corporation Contacts</td>
-    <td><%= current_user.settings.sync_corp_contacts %></td>
-  </tr>
-  <tr>
-    <td>Sync Alliance Contacts</td>
-    <td><%= current_user.settings.sync_ally_contacts %></td>
-  </tr>
-</table>
-<%= link_to "Edit Settings", settings_edit_path %>
-
-<h1>Alt Characters</h1>
-<%= link_to "Add a Character", user_crest_omniauth_authorize_path %>
-<ul>
-  <% current_user.alt_characters.each do |alt_character| %>
-    <li><%= alt_character.name %> <%= button_to "Sync", synchronize_path(params: {alt_character_id: alt_character.id}), method: :post %></li>
-  <% end %>
-</ul>
+    <div class="text-center bordered-container">
+      <h4>Settings</h4>
+      <table>
+        <tr>
+          <td class="text-left">Sync Character Contacts</td>
+          <td><%= current_user.settings.sync_char_contacts ? '&#10004;'.html_safe : '&#10008;'.html_safe %></td>
+        </tr>
+        <tr>
+          <td class="text-left">Sync Corp Contacts</td>
+          <td><%= current_user.settings.sync_corp_contacts ? '&#10004;'.html_safe : '&#10008;'.html_safe %></td>
+        </tr>
+        <tr>
+          <td class="text-left">Sync Alliance Contacts</td>
+          <td><%= current_user.settings.sync_ally_contacts ? '&#10004;'.html_safe : '&#10008;'.html_safe %></td>
+        </tr>
+      </table>
+      <span class="text-center">
+        <%= button_to "Edit Settings", settings_edit_path, class: 'btn btn-primary', method: :get %>
+      </span>
+    </div>
+    <div class="text-center bordered-container">
+      <%= button_to "Logout", destroy_user_session_path, class: 'btn btn-primary', method: :get %>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <ul>
+      <li class="bordered-container row row-flex">
+        <div class="col-sm-7">
+          <%= image_tag "https://image.eveonline.com/Character/0_128.jpg", class: 'avatar-img' %>
+          <span>Add a Character</span>
+        </div>
+        <div class="col-sm-5 text-right">
+          <span>
+            <%= link_to image_tag("https://web.ccpgamescdn.com/eveonlineassets/developers/eve-sso-login-black-small.png"), user_crest_omniauth_authorize_path %>
+          </span>
+        </div>
+      </li>
+      <% current_user.alt_characters.each do |alt_character| %>
+        <li class="bordered-container row row-flex">
+          <div class="col-sm-7">
+            <%= image_tag "https://image.eveonline.com/Character/#{alt_character.character_id}_128.jpg", class: 'avatar-img' %>
+            <span>
+              <%= alt_character.name %>
+            </span>
+          </div>
+          <div class="col-sm-5 text-right">
+            <%= button_to "Sync", synchronize_path(params: {alt_character_id: alt_character.id}), method: :post, class: 'btn btn-primary', form: {style: 'display:inline-block;'} %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

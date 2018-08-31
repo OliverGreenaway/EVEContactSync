@@ -1,13 +1,16 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'devise'
 gem 'httparty'
 gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-crest'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.6'
+gem 'sass-rails', '>= 3.2'
 
 group :development, :test do
   gem 'byebug'

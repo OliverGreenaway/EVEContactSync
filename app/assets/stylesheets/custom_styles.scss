@@ -1,0 +1,75 @@
+body {
+  background-color: #121212;
+  background-image: url(/assets/background.jpg);
+  color: #deffff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  margin: 0 auto 5px;
+
+}
+
+tr {
+  background-color: rgba(33, 42, 39, .4);
+}
+
+tr:hover {
+  background-color: rgba(89, 98, 94, .4);
+}
+
+td {
+  border: solid #334239 1px;
+  padding: 2px;
+}
+
+.row-flex {
+    display: flex;
+    align-items: center;
+}
+
+.avatar-img {
+  margin: 10px;
+}
+
+.bordered-container {
+  border-color: #334239;
+  border-style: double;
+  border-width: 3px;
+  background-color: rgba(33, 42, 39, .4);
+  margin-bottom: 2px;
+  padding: 2px;
+}
+
+.btn {
+    padding: 1px 2px;
+    border: 1 solid;
+    border-color: #356252;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #28463b;
+    color: #8dc7b8;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #355c4c;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #28463b;
+    box-shadow: none;
+}
+
+.btn-inline {
+  display: inline;
+}
