@@ -7,7 +7,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           flash[:alert] = "Alt Character #{message}"
         end
       end
-      redirect_to sync_path
+      redirect_to dashboard_path
     else
       @user = User.from_omniauth(request.env["omniauth.auth"])
 

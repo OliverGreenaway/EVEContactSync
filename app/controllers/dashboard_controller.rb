@@ -1,6 +1,8 @@
-class SyncController < AuthenticatedController
+class DashboardController < AuthenticatedController
 
   def index
+    # Fetch information on a character the first time the dashboard is visited
+    EveSwaggerInterfaceService.new(current_user).char_information unless current_user.corp_id
   end
 
   def synchronize
@@ -13,7 +15,7 @@ class SyncController < AuthenticatedController
         end
       end
     end
-    redirect_to sync_path
+    redirect_to dashboard_path
   end
 
 end

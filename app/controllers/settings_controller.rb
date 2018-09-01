@@ -5,7 +5,7 @@ class SettingsController < AuthenticatedController
 
   def update
     current_user.settings.update(settings_params)
-    redirect_to sync_path
+    redirect_to dashboard_path
   end
 
   private
