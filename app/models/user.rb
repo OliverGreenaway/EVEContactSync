@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_one :settings
   has_many :alt_characters
 
+  ROLES = [:user, :admin]
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
@@ -12,6 +14,7 @@ class User < ApplicationRecord
       user.refresh_token = auth.credentials.refresh_token
       user.token_expiry = auth.credentials.expires_at
       user.settings = Settings.create
+      user.role = :user
     end
   end
 
@@ -20,13 +23,22 @@ class User < ApplicationRecord
     token
   end
 
+  def admin?
+    role == "admin"
+  end
+
   def refresh_token!
     if self.refresh_token
       if Time.at(self.token_expiry) <= Time.now
+        auth_header = if admin?
+          "Basic #{Base64.encode64("#{ENV['ESI_WALLET_CLIENT_ID']}:#{ENV['ESI_WALLET_SECRET_KEY']}").tr("\n",'')}"
+        else
+          "Basic #{Base64.encode64("#{ENV['ESI_CLIENT_ID']}:#{ENV['ESI_SECRET_KEY']}").tr("\n",'')}"
+        end
         response = HTTParty.post(
           "https://login.eveonline.com/oauth/token",
           headers: {
-            Authorization: "Basic #{Base64.encode64("#{ENV['ESI_CLIENT_ID']}:#{ENV['ESI_SECRET_KEY']}").tr("\n",'')}",
+            Authorization: auth_header,
           },
           body: {
             grant_type: 'refresh_token',

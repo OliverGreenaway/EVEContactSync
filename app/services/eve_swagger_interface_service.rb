@@ -87,6 +87,26 @@ class EveSwaggerInterfaceService
     @ally_information
   end
 
+  def wallet_balance
+    return nil unless @user.admin?
+    response = self.class.get("/characters/#{@user.character_id}/wallet", query: base_params.merge(authorize_params))
+    if response.success?
+      response.parsed_response
+    else
+      nil
+    end
+  end
+
+  def wallet_journal
+    return nil unless @user.admin?
+    response = self.class.get("/characters/#{@user.character_id}/wallet/journal", query: base_params.merge(authorize_params))
+    if response.success?
+      response.parsed_response
+    else
+      nil
+    end
+  end
+
   private
 
   def base_params
