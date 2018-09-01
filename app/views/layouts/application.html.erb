@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EVEContactSync</title>
+    <title>EVE Contact Sync</title>
     <%= csrf_meta_tags %>
+
+    <%= favicon_link_tag "favicon.png" %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <div class="container">
+    <header>
+      <%= render 'layouts/partials/nav_bar' %>
+    </header>
+
+    <main role="main" class="container">
+      <%= render 'layouts/partials/alerts' %>
       <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
           <%= yield %>
         </div>
-        <div class="col-sm-2"></div>
+        <div class="col-sm-1"></div>
       </div>
-    </div>
+    </main>
   </body>
 </html>

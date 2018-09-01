@@ -2,6 +2,7 @@ body {
   background-color: #121212;
   background-image: url(/assets/background.jpg);
   color: #deffff;
+  padding-top: 60px;
 }
 
 ul {
@@ -28,6 +29,10 @@ td {
   padding: 2px 5px 2px;
 }
 
+.navbar {
+  margin-bottom: 5px;
+}
+
 .row-flex {
     display: flex;
     align-items: center;
@@ -43,7 +48,7 @@ td {
   border-width: 3px;
   background-color: rgba(33, 42, 39, .4);
   margin-bottom: 2px;
-  padding: 2px;
+  padding: 5px;
 }
 
 .btn {
