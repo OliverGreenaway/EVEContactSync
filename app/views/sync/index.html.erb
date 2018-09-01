@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-4">
+  <div class="col-md-4">
     <div class="text-center bordered-container">
       <h3>
         <%= current_user.name %>
@@ -34,21 +34,21 @@
       </span>
     </div>
   </div>
-  <div class="col-sm-8">
+  <div class="col-md-8">
     <ul>
       <li class="bordered-container row row-flex">
-        <div class="col-sm-7">
+        <div class="col-md-7">
           <div class="row row-flex">
-            <div class="col-sm-5">
+            <div class="col-xl-5 col-md-6">
               <%= image_tag "https://image.eveonline.com/Character/0_128.jpg", class: 'avatar-img' %>
             </div>
-            <div class="col-sm-7">
+            <div class="col-xl-7  col-md-6">
               <span>Add a Character</span>
             </div>
           </div>
 
         </div>
-        <div class="col-sm-5 text-right">
+        <div class="col-md-5 text-right">
           <span>
             <%= link_to image_tag("https://web.ccpgamescdn.com/eveonlineassets/developers/eve-sso-login-black-small.png"), user_crest_omniauth_authorize_path %>
           </span>
@@ -56,18 +56,18 @@
       </li>
       <% current_user.alt_characters.each do |alt_character| %>
         <li class="bordered-container row row-flex">
-          <div class="col-sm-7">
+          <div class="col-md-7">
             <div class="row row-flex">
-              <div class="col-sm-5">
+              <div class="col-xl-5 col-md-6">
                   <%= image_tag "https://image.eveonline.com/Character/#{alt_character.character_id}_128.jpg", class: 'avatar-img' %>
               </div>
-              <div class="col-sm-7">
+              <div class="col-xl-7  col-md-6">
                 <%= alt_character.name %><br>
                 <small><%= "Last Sync: #{alt_character.time_since_last_sync}" %></small>
               </div>
             </div>
           </div>
-          <div class="col-sm-5 text-right">
+          <div class="col-md-5 text-right">
             <%= button_to "Sync", synchronize_path(params: {alt_character_id: alt_character.id}), method: :post, class: 'btn btn-primary', form: {style: 'display:inline-block;'} %>
           </div>
         </li>
