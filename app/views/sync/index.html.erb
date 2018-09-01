@@ -30,8 +30,15 @@
     <ul>
       <li class="bordered-container row row-flex">
         <div class="col-sm-7">
-          <%= image_tag "https://image.eveonline.com/Character/0_128.jpg", class: 'avatar-img' %>
-          <span>Add a Character</span>
+          <div class="row row-flex">
+            <div class="col-sm-5">
+              <%= image_tag "https://image.eveonline.com/Character/0_128.jpg", class: 'avatar-img' %>
+            </div>
+            <div class="col-sm-7">
+              <span>Add a Character</span>
+            </div>
+          </div>
+
         </div>
         <div class="col-sm-5 text-right">
           <span>
@@ -43,11 +50,12 @@
         <li class="bordered-container row row-flex">
           <div class="col-sm-7">
             <div class="row row-flex">
-              <div class="col-sm-6">
+              <div class="col-sm-5">
                   <%= image_tag "https://image.eveonline.com/Character/#{alt_character.character_id}_128.jpg", class: 'avatar-img' %>
               </div>
-              <div class="col-sm-6">
-                <%= alt_character.name %>
+              <div class="col-sm-7">
+                <%= alt_character.name %><br>
+                <small><%= "Last Sync: #{alt_character.time_since_last_sync}" %></small>
               </div>
             </div>
           </div>

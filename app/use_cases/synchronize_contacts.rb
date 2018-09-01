@@ -4,12 +4,18 @@ class SynchronizeContacts
   def initialize(user:, alt:)
     @user = user
     @alt = alt
+    @total_syncs = 0
   end
 
   def perform
     synchronize_character_contacts if @user.settings.sync_char_contacts
     synchronize_corporation_contacts if @user.settings.sync_corp_contacts
     synchronize_alliance_contacts if @user.settings.sync_ally_contacts
+    if @total_syncs == 0
+      errors[:sync] << "No contacts synchronized, ensure you have enabled syncing of at least one contact type in settings."
+    else
+      @alt.update(last_sync: Time.now)
+    end
   end
 
   private
@@ -34,6 +40,7 @@ class SynchronizeContacts
         alt_esi_service.create_contacts(standing: standing, contacts: contact_slice)
       end
     end
+    @total_syncs += 1
   end
 
   def seperate_by_standing(contacts)

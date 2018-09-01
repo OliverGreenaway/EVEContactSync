@@ -29,4 +29,28 @@ class AltCharacter < ApplicationRecord
       end
     end
   end
+
+  def time_since_last_sync
+    seconds_diff = (Time.now - last_sync).to_i.abs
+
+    days = seconds_diff / 86400
+    seconds_diff -= days * 86400
+
+    hrs = seconds_diff / 3600
+    seconds_diff -= hrs * 3600
+
+    mins = seconds_diff / 60
+    seconds_diff -= mins * 60
+
+    secs = seconds_diff
+
+    output = ''
+    output += "#{days} days " if days > 0
+    output += "#{hrs} hrs " if days > 0 || hrs > 0
+    output += "#{mins} mins " if days > 0 || hrs > 0 || mins > 0
+    output += "#{secs} secs" if days > 0 || hrs > 0 || mins > 0 || secs > 0
+    output = "Never" if output == ''
+    output
+
+  end
 end
