@@ -7,6 +7,7 @@
     <th>Amount</th>
     <th>Contact</th>
     <th>Contact Type</th>
+    <th>Recorded</th>
   </tr>
 <% @wallet_journal.each do |entry| %>
   <tr>
@@ -14,12 +15,15 @@
     <% if User.where(character_id: entry["first_party_id"]).present? %>
       <td><%= User.where(character_id: entry["first_party_id"]).first.name %></td>
       <td>User</td>
+      <td><%= PremiumPayment.where(payment_identifier: entry['id'].to_s).present? ? 'Yes' : 'No' %></td>
     <% elsif AltCharacter.where(character_id: entry["first_party_id"]).present? %>
       <td><%= AltCharacter.where(character_id: entry["first_party_id"]).first.name %></td>
       <td>Alt Character</td>
+      <td>No</td>
     <% else %>
       <td><%= entry["first_party_id"] %></td>
       <td>Unknown</td>
+      <td>No</td>
     <% end %>
   </tr>
 <% end %>

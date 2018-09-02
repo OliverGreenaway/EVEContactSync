@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_one :settings
   has_many :alt_characters
+  has_many :premium_payments
 
   ROLES = [:user, :admin]
 
@@ -25,6 +26,19 @@ class User < ApplicationRecord
 
   def admin?
     role == "admin"
+  end
+
+  def premium?
+    premium_expires_at > Time.now
+  end
+
+  def premium_expires_at
+    last_payment = premium_payments.sort_by(&:start_at).last
+    if last_payment
+      last_payment.end_at
+    else
+      1.day.ago
+    end
   end
 
   def refresh_token!
