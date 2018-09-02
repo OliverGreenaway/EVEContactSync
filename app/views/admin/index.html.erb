@@ -2,4 +2,25 @@
 <span>Wallet Balance: <%= @wallet_balance %>ISK</span>
 
 <h4>Transactions</h4>
-<%= @wallet_journal %>
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Contact</th>
+    <th>Contact Type</th>
+  </tr>
+<% @wallet_journal.each do |entry| %>
+  <tr>
+    <td><%= entry["amount"] %></td>
+    <% if User.where(character_id: entry["first_party_id"]).present? %>
+      <td><%= User.where(character_id: entry["first_party_id"]).first.name %></td>
+      <td>User</td>
+    <% elsif AltCharacter.where(character_id: entry["first_party_id"]).present? %>
+      <td><%= AltCharacter.where(character_id: entry["first_party_id"]).first.name %></td>
+      <td>Alt Character</td>
+    <% else %>
+      <td><%= entry["first_party_id"] %></td>
+      <td>Unknown</td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
