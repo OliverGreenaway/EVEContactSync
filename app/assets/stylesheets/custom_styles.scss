@@ -33,15 +33,15 @@ td {
   padding: 2px 5px 2px;
 }
 
-a {
+a.premium {
   color: yellow;
 }
 
-a:hover {
+a:hover.premium {
   color: gold;
 }
 
-a:active {
+a:active.premium {
   color: yellow;
 }
 

@@ -1,6 +1,9 @@
 class DashboardController < AuthenticatedController
 
   def index
+    unless current_user.viewed_manual
+      flash[:notice] = "Welcome to Alt Contact Sync, to view instructions on how to use, check out our <a href='#{manual_path}'>Manual</a>".html_safe
+    end
     # Fetch information on a character the first time the dashboard is visited
     EveSwaggerInterfaceService.new(current_user).char_information unless current_user.corp_id
   end

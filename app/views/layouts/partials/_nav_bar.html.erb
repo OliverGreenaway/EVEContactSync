@@ -6,6 +6,9 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'Manual', manual_path, class: "nav-link #{current_page?(:controller => 'home', :action => 'manual') ? 'active' : ''}" %>
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'Dashboard', dashboard_path, class: "nav-link #{current_page?(:controller => 'dashboard', :action => 'index') ? 'active' : ''}" %>
