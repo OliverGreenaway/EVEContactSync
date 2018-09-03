@@ -11,6 +11,9 @@
         <% end %>
       </h3>
       <%= image_tag "https://imageserver.eveonline.com/Character/#{current_user.character_id}_128.jpg", class: 'avatar-img' %><br>
+      <span>
+        Premium: <%= current_user.premium? ? "#{(current_user.premium_expires_at - Time.now).to_i/86400} days left" : 'inactive'%> <small>(<%= link_to (current_user.premium? ? "Add" : "Activate"), premium_path %>)</small>
+      </span>
     </div>
 
     <div class="text-center bordered-container">
@@ -35,7 +38,7 @@
     </div>
   </div>
   <div class="col-md-8">
-    <ul>
+    <ul class="unstyled">
       <li class="bordered-container row row-flex">
         <div class="col-md-7">
           <div class="row row-flex">

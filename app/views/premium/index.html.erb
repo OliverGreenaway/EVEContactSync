@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12 bordered-container">
+    <h1>Premium</h1>
+    <hr>
+    <p>
+    Welcome <%= current_user.name %>,
+    </p>
+    <p>
+    Activate Premium on your account to access the ability to get automatic syncing of contacts on all of your Alt accounts every 10 minutes.
+    </p>
+    <p>
+    All you have to do is purchase premium time with ISK, setup which contacts you would like syncd and which Alts to sync them to. And then leave us to handle the rest.
+    </p>
+    <p>
+    How to purchase:
+    </p>
+    <ul>
+      <li>
+        When sending ISK, send ISK from the character you're logged in with on this website right now: <b><%= current_user.name %></b>!
+      <li>
+        Send <%= "#{PremiumPayment::COST_PER_MONTH/1000000}m (#{PremiumPayment::COST_PER_MONTH})" %> ISK per month to <b>Alt Contact Sync</b>
+      </li>
+      <li>
+        Check VERY carefully you have the right character to send the ISK to!
+      </li>
+      <li>
+        You CAN send <%= "#{PremiumPayment::COST_PER_MONTH/1000000*2}m, #{PremiumPayment::COST_PER_MONTH/1000000*3}m, #{PremiumPayment::COST_PER_MONTH/1000000*4}m, ..." %> to get 2, 3, 4, ... months of credit respectively.
+      </li>
+      <li>
+        Incorrect amounts (not divisble by <%= "#{PremiumPayment::COST_PER_MONTH/1000000}m" %>) are rounded down
+      </li>
+      <li>
+        Note: There could be a delay of up to an hour processing payments due to EVE's systems updating
+      </li>
+    </ul>
+  </div>
+</div>

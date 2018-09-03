@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/settings/edit', to: 'settings#edit'
   put '/settings', to: 'settings#update'
   post '/synchronize', to: 'dashboard#synchronize'
+  get '/premium', to: 'premium#index'
 
   devise_scope :user do
      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

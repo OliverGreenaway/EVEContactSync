@@ -45,12 +45,9 @@ class AltCharacter < ApplicationRecord
 
     secs = seconds_diff
 
-    output = ''
-    output += "#{days} days " if days > 0
-    output += "#{hrs} hrs " if days > 0 || hrs > 0
-    output += "#{mins} mins " if days > 0 || hrs > 0 || mins > 0
-    output += "#{secs} secs"
-    output
-
+    return "#{days} days " if days > 0
+    return "#{hrs} hrs " if days > 0 || hrs > 0
+    return "#{mins} mins " if days > 0 || hrs > 0 || mins > 0
+    return "#{secs} secs"
   end
 end

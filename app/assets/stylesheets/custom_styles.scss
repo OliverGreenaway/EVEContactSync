@@ -5,7 +5,7 @@ body {
   padding-top: 60px;
 }
 
-ul {
+ul.unstyled {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -31,6 +31,18 @@ th {
 td {
   border: solid #334239 1px;
   padding: 2px 5px 2px;
+}
+
+a {
+  color: yellow;
+}
+
+a:hover {
+  color: gold;
+}
+
+a:active {
+  color: yellow;
 }
 
 .navbar {
