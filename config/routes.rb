@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   put '/settings', to: 'settings#update'
   post '/synchronize', to: 'dashboard#synchronize'
   get '/premium', to: 'premium#index'
+  delete '/alt_character', to: 'dashboard#remove_alt'
 
   devise_scope :user do
      get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

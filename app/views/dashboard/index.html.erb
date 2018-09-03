@@ -7,7 +7,7 @@
           <br><small><small><%= current_user.corp_name %></small></small>
         <% end %>
         <% if current_user.ally_name %>
-          <br><small><%= current_user.ally_name %></small>
+          <br><small><small><%= current_user.ally_name %></small></small>
         <% end %>
       </h3>
       <%= image_tag "https://imageserver.eveonline.com/Character/#{current_user.character_id}_128.jpg", class: 'avatar-img' %><br>
@@ -72,6 +72,7 @@
           </div>
           <div class="col-md-5 text-right">
             <%= button_to "Sync", synchronize_path(params: {alt_character_id: alt_character.id}), method: :post, class: 'btn btn-primary', form: {style: 'display:inline-block;'} %>
+            <%= button_to "Remove", alt_character_path(params: {alt_character_id: alt_character.id}), method: :delete, class: 'btn btn-warning', form: {style: 'display:inline-block;'} %>
           </div>
         </li>
       <% end %>

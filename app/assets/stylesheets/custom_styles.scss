@@ -91,6 +91,21 @@ a:active.premium {
     box-shadow: none;
 }
 
+.btn-warning {
+    background: #991604;
+    color: #8dc7b8;
+}
+
+.btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning.active, .open > .dropdown-toggle.btn-warning {
+    background: #991604;
+    color: white;
+}
+
+.btn-warning:active, .btn-warning.active {
+    background: #991604;
+    box-shadow: none;
+}
+
 .btn-inline {
   display: inline;
 }

@@ -21,4 +21,10 @@ class DashboardController < AuthenticatedController
     redirect_to dashboard_path
   end
 
+  def remove_alt
+    alt_character = current_user.alt_characters.find(params[:alt_character_id])
+    alt_character.delete
+    redirect_to dashboard_path
+  end
+
 end
