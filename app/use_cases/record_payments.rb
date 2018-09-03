@@ -24,14 +24,14 @@ class RecordPayments
 
   def record_payments
     @payments_requiring_record.each do |entry|
-      if entry['amount'] > PremiumPayment::COST_PER_MONTH && user = User.find_by_character_id(entry['first_party_id'])
+      if entry['amount'] >= PremiumPayment::COST_PER_MONTH && user = User.find_by_character_id(entry['first_party_id'])
         PremiumPayment.create(
           user: user,
-          start_at: user.premium? ? user.premium_expires_at : Time.now,
+          start_at: (user.premium? ? user.premium_expires_at : Time.now),
           amount: entry['amount'],
           paid_at: Time.parse(entry['date']),
           payment_identifier: entry['id'].to_s,
-          seconds_credited: (entry['amount'] - (entry['amount'] % PremiumPayment::COST_PER_MONTH)) / PremiumPayment::COST_PER_MONTH) * 2592000,
+          seconds_credited: (((entry['amount'] - (entry['amount'] % PremiumPayment::COST_PER_MONTH)) / PremiumPayment::COST_PER_MONTH) * 2592000),
           monthly_rate: PremiumPayment::COST_PER_MONTH
         )
       end
