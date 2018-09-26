@@ -1,36 +1,45 @@
+<h3>Settings</h3>
 <div class="row">
   <div class="col-sm-12">
-    <%= form_for(current_user.settings, url: settings_path, html: { method: :put, class: 'bordered-container' }) do |f| %>
-      <%= f.label :sync_char_contacts do %>
-        <%= f.check_box :sync_char_contacts %>
+    <%= form_tag(settings_path, method: :put, class: 'bordered-container') do %>
+      <h5>Sync Options</h5>
+      <%= hidden_field_tag :sync_char_contacts, "0" %>
+      <%= label_tag :sync_char_contacts do %>
+        <%= check_box_tag :sync_char_contacts, "1", current_user.settings.sync_char_contacts %>
         Sync Character Contacts
       <% end %></br>
-      <%= f.label :sync_corp_contacts do %>
-        <%= f.check_box :sync_corp_contacts %>
+
+      <%= hidden_field_tag :sync_corp_contacts, "0" %>
+      <%= label_tag :sync_corp_contacts do %>
+        <%= check_box_tag :sync_corp_contacts, "1", current_user.settings.sync_corp_contacts %>
         Sync Corporation Contacts
       <% end %></br>
-      <%= f.label :sync_ally_contacts do %>
-        <%= f.check_box :sync_ally_contacts %>
+
+      <%= hidden_field_tag :sync_ally_contacts, "0" %>
+      <%= label_tag :sync_ally_contacts do %>
+        <%= check_box_tag :sync_ally_contacts, "1", current_user.settings.sync_ally_contacts %>
         Sync Alliance Contacts
       <% end %></br>
-      <%= f.submit "Update", class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-</div>
-<% if current_user.premium? %>
-<h4>Premium Settings</h4>
-<div class="row">
-  <div class="col-sm-12">
-    <% if current_user.alt_characters.present? %>
-    <%= form_tag(settings_premium_path, method: :put, class: 'bordered-container') do |f| %>
-      <% current_user.alt_characters.each do |alt| %>
-        <%= label_tag alt.name%>
-        <%= select_tag "label_#{alt.id}", options_for_select(alt.labels.collect {|i|[i["label_name"], i["label_id"]]}, [alt.label_name, alt.label_id]) %>
-        <br>
+
+      <% if current_user.premium? %>
+
+        <%= hidden_field_tag :auto_sync_contacts, "0" %>
+        <%= label_tag :auto_sync_contacts do %>
+          <%= check_box_tag :auto_sync_contacts, "1", current_user.settings.auto_sync_contacts %>
+          Automatically Sync Contacts
+        <% end %></br>
+
+        <% if current_user.alt_characters.present? %>
+          <h5>Assign contacts to labels</h5>
+          <% current_user.alt_characters.each do |alt| %>
+            <%= label_tag alt.name%>
+            <%= select_tag "label_#{alt.id}", options_for_select(alt.labels.collect {|i|[i["label_name"], i["label_id"]]}, [alt.label_name, alt.label_id]) %>
+            <br>
+          <% end %>
+        <% end %>
       <% end %>
+
       <%= submit_tag "Update", class: 'btn btn-primary' %>
     <% end %>
-    <% end %>
   </div>
 </div>
-<% end %>

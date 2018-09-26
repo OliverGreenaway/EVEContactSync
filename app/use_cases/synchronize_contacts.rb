@@ -40,8 +40,8 @@ class SynchronizeContacts
     sorted_contacts = seperate_by_standing(contacts)
     labels = []
     if @user.premium? && @alt.label_id != AltCharacter::DEFAULT_LABEL["label_id"]
-      if alt_esi_service.contact_labels.detect({|l| l["label_id"] == @alt.label_id }).present?
-        labels = [@alt.label_id]
+      if alt_esi_service.contact_labels.detect {|l| l["label_id"] == @alt.label_id }.present?
+        labels = @alt.label_id
       end
     end
 

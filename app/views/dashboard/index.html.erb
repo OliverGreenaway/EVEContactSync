@@ -31,6 +31,12 @@
           <td class="text-left">Sync Alliance Contacts</td>
           <td><%= current_user.settings.sync_ally_contacts ? '&#10003;'.html_safe : '&#10007;'.html_safe %></td>
         </tr>
+        <% if current_user.premium? %>
+        <tr>
+          <td class="text-left">Auto Sync Contacts</td>
+          <td><%= current_user.settings.auto_sync_contacts ? '&#10003;'.html_safe : '&#10007;'.html_safe %></td>
+        </tr>
+        <% end %>
       </table>
       <span class="text-center">
         <%= button_to "Edit Settings", settings_edit_path, class: 'btn btn-primary', method: :get %>

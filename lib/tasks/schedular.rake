@@ -10,6 +10,7 @@ task :sync_contacts => :environment do
   puts "Syncing Premium Users Contacts..."
   errors = {}
   User.select(&:premium?).each do |premium_user|
+    next unless premium_user.settings.auto_sync_contacts
     premium_user.alt_characters.each do |alt_character|
       sync = SynchronizeContacts.perform(user: premium_user, alt: alt_character)
       unless sync.success?
