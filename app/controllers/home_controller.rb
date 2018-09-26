@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   def manual
     if current_user
       current_user.update(viewed_manual: true)
+      flash[:notice] = nil
     end
   end
 
