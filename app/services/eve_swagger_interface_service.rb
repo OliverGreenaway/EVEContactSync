@@ -34,7 +34,7 @@ class EveSwaggerInterfaceService
     end
   end
 
-  def create_contacts(standing:, contacts:)
+  def create_contacts(standing:, contacts:, labels: [])
     response = self.class.post(
       "/characters/#{@user.character_id}/contacts/",
       headers: {
@@ -44,7 +44,8 @@ class EveSwaggerInterfaceService
       body: contacts.to_json,
       query: {
         standing: standing,
-        watched: false
+        watched: false,
+        label_ids: labels
       }.merge(base_params.merge(authorize_params)))
   end
 
@@ -85,6 +86,17 @@ class EveSwaggerInterfaceService
       @ally_information = {}
     end
     @ally_information
+  end
+
+  def contact_labels
+    return @labels if @labels
+    response = self.class.get("/characters/#{@user.character_id}/contacts/labels/", query: base_params.merge(authorize_params))
+    if response.success?
+      @labels = response.parsed_response
+    else
+      @labels = {}
+    end
+    @labels
   end
 
   def wallet_balance

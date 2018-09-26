@@ -38,10 +38,16 @@ class SynchronizeContacts
 
   def sync_contacts(contacts)
     sorted_contacts = seperate_by_standing(contacts)
+    labels = []
+    if @user.premium? && @alt.label_id != AltCharacter::DEFAULT_LABEL["label_id"]
+      if alt_esi_service.contact_labels.detect({|l| l["label_id"] == @alt.label_id }).present?
+        labels = [@alt.label_id]
+      end
+    end
 
     sorted_contacts.each do |standing,contact_ids|
       contact_ids.each_slice(100) do |contact_slice|
-        alt_esi_service.create_contacts(standing: standing, contacts: contact_slice)
+        alt_esi_service.create_contacts(standing: standing, contacts: contact_slice, labels: labels)
       end
     end
     @total_syncs += 1

@@ -22,6 +22,8 @@ class AddAltCharacter
         alt_character.token = @alt_details.credentials.token
         alt_character.refresh_token = @alt_details.credentials.refresh_token
         alt_character.token_expiry = @alt_details.credentials.expires_at
+        alt_character.label_id = AltCharacter::DEFAULT_LABEL["label_id"]
+        alt_character.label_name = AltCharacter::DEFAULT_LABEL["label_name"]
       end
     end
   end

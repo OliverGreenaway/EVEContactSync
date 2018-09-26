@@ -1,6 +1,8 @@
 class AltCharacter < ApplicationRecord
   belongs_to :user
 
+  DEFAULT_LABEL = {"label_id" => 0, "label_name" => 'None'}
+
   def current_token
     refresh_token!
     token
@@ -49,5 +51,12 @@ class AltCharacter < ApplicationRecord
     return "#{hrs} hrs " if days > 0 || hrs > 0
     return "#{mins} mins " if days > 0 || hrs > 0 || mins > 0
     return "#{secs} secs"
+  end
+
+  def labels
+    return DEFAULT_LABEL unless user.premium?
+    esi_client = EveSwaggerInterfaceService.new(self)
+    labels = esi_client.contact_labels.sort_by {|l| l["label_name"]}
+    [DEFAULT_LABEL] + labels
   end
 end

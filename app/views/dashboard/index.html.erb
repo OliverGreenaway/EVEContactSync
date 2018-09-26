@@ -66,6 +66,9 @@
               </div>
               <div class="col-xl-7  col-md-6">
                 <%= alt_character.name %><br>
+                <% if current_user.premium? %>
+                <small>Label: <%= alt_character.label_name %></small><br>
+                <% end %>
                 <small><%= "Last Sync: #{alt_character.time_since_last_sync}" %></small>
               </div>
             </div>

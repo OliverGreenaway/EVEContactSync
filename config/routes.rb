@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index'
   get '/settings/edit', to: 'settings#edit'
   put '/settings', to: 'settings#update'
+  put '/settings/premium', to: 'settings#premium_settings'
   post '/synchronize', to: 'dashboard#synchronize'
   get '/premium', to: 'premium#index'
   delete '/alt_character', to: 'dashboard#remove_alt'
