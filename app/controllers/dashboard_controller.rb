@@ -9,7 +9,7 @@ class DashboardController < AuthenticatedController
   def synchronize
     alt_character = current_user.alt_characters.find_by_id(params[:alt_character_id])
     if alt_character
-      sync_contacts = SynchronizeContacts.perform(user: current_user, alt: alt_character)
+      sync_contacts = SynchronizeContacts.perform(user: current_user, alt: alt_character, source: :manual)
       unless sync_contacts.success?
         sync_contacts.errors.messages[:sync].each do |message|
           flash[:alert] = message

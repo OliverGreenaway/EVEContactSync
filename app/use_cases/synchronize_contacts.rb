@@ -1,7 +1,10 @@
 class SynchronizeContacts
   include UseCase
 
-  def initialize(user:, alt:)
+  attr_reader :total_syncs
+
+  def initialize(user:, alt:, source:)
+    @sync_stat = SyncStat.create(job_started: Time.now, job_type: source)
     @user = user
     @alt = alt
     @total_syncs = 0
@@ -20,6 +23,7 @@ class SynchronizeContacts
     else
       errors[:sync] << "#{@alt.name} not Synced, Each Alt Character can only be synced every 5 minutes."
     end
+    @sync_stat.update(job_finished: Time.now, success: true, contact_count: @total_syncs)
   end
 
   private

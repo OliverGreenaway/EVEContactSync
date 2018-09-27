@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180926125142) do
+ActiveRecord::Schema.define(version: 20180926220934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20180926125142) do
     t.boolean "sync_ally_contacts", default: false
     t.integer "user_id"
     t.boolean "auto_sync_contacts", default: false
+  end
+
+  create_table "sync_stats", force: :cascade do |t|
+    t.datetime "job_started"
+    t.datetime "job_finished"
+    t.integer "contact_count"
+    t.boolean "success", default: false
+    t.string "job_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
