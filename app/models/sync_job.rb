@@ -1,0 +1,2 @@
+class SyncJob < ApplicationRecord
+end
