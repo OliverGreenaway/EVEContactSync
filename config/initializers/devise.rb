@@ -258,9 +258,9 @@ Devise.setup do |config|
   # up on your models and hooks.
 
   # General signup
-  config.omniauth :crest, ENV["ESI_CLIENT_ID"], ENV["ESI_SECRET_KEY"], scope: 'esi-characters.read_contacts.v1 esi-characters.write_contacts.v1 esi-corporations.read_contacts.v1 esi-alliances.read_contacts.v1'
+  # config.omniauth :crest, ENV["ESI_CLIENT_ID"], ENV["ESI_SECRET_KEY"], scope: 'esi-characters.read_contacts.v1 esi-characters.write_contacts.v1 esi-corporations.read_contacts.v1 esi-alliances.read_contacts.v1'
   # Admin Signup
-  # config.omniauth :crest, ENV["ESI_WALLET_CLIENT_ID"], ENV["ESI_WALLET_SECRET_KEY"], scope: 'esi-wallet.read_character_wallet.v1 esi-characters.read_contacts.v1 esi-characters.write_contacts.v1 esi-corporations.read_contacts.v1 esi-alliances.read_contacts.v1'
+  config.omniauth :crest, ENV["ESI_WALLET_CLIENT_ID"], ENV["ESI_WALLET_SECRET_KEY"], scope: 'esi-wallet.read_character_wallet.v1 esi-characters.read_contacts.v1 esi-characters.write_contacts.v1 esi-corporations.read_contacts.v1 esi-alliances.read_contacts.v1'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
