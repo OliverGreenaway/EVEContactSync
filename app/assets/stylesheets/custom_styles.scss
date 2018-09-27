@@ -1,6 +1,7 @@
 body {
   background-color: #121212;
-  background-image: url(/assets/background.jpg);
+  background-image: url(/assets/background-min.png);
+  background-repeat: no-repeat;
   color: #deffff;
   padding-top: 60px;
 }
@@ -11,8 +12,24 @@ ul.unstyled {
   margin: 0;
 }
 
+ul.manual-index {
+  list-style: none;
+  padding: 0;
+  a {
+    color: orange;
+  }
+}
+
+a.text-link {
+  color: orange;
+}
+
 table {
   margin: 0 auto 5px;
+}
+
+table.left {
+  margin: 0 auto 5px 0;
 }
 
 tr {
@@ -56,6 +73,11 @@ a:active.premium {
 
 .avatar-img {
   margin: 10px;
+}
+
+.manual-image {
+  max-width: 30%;
+  max-height: 200px;
 }
 
 .bordered-container {

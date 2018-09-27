@@ -31,11 +31,14 @@
 
         <% if current_user.alt_characters.present? %>
           <h5>Assign contacts to labels</h5>
+          <table class="left">
           <% current_user.alt_characters.each do |alt| %>
-            <%= label_tag alt.name%>
-            <%= select_tag "label_#{alt.id}", options_for_select(alt.labels.collect {|i|[i["label_name"], i["label_id"]]}, [alt.label_name, alt.label_id]) %>
-            <br>
+            <tr>
+              <td><%= label_tag alt.name%></td>
+              <td><%= select_tag "label_#{alt.id}", options_for_select(alt.labels.collect {|i|[i["label_name"], i["label_id"]]}, [alt.label_name, alt.label_id]) %></td>
+            </tr>
           <% end %>
+          </table>
         <% end %>
       <% end %>
 

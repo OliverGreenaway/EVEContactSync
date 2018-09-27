@@ -35,7 +35,7 @@ class EveSwaggerInterfaceService
   end
 
   def create_contacts(standing:, contacts:, labels: [])
-    response = self.class.post(
+    response = self.class.put(
       "/characters/#{@user.character_id}/contacts/",
       headers: {
         'Content-Type' => 'application/json',

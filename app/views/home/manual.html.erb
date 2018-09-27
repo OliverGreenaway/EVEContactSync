@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-sm-12 bordered-container">
+    <h2>How to use Alt Contact Sync</h2>
+
+    <ul class="manual-index">
+      <li><a href="#main">Adding your main character</a></li>
+      <li><a href="#alt">Adding your alt characters</a></li>
+      <li><a href="#settings">Configuring your settings</a></li>
+      <li><a href="#sync">Running a Sync</a></li>
+      <li><a href="#premium">Premium Features</a></li>
+    </ul>
+
+    <h4 id="main">Adding your main character</h4>
+
+    <p>To add your main character just login through EVE using the Sign in button in the top right or the button on the home page.</p>
+    <%= image_tag 'manual_images/1-min.png', class: 'manual-image' %>
+    <p>Here you login to your EVE account and then select the character you would like to use.</p>
+    <%= image_tag 'manual_images/2-min.png', class: 'manual-image' %>
+    <%= image_tag 'manual_images/3-min.png', class: 'manual-image' %>
+    <p>You should now end up on the main dashboard.</p>
+    <%= image_tag 'manual_images/4-min.png', class: 'manual-image' %><br><br>
+
+    <h4 id="alt">Adding your alt characters</h4>
+
+    <p>To add the characters you want your contacts to sync to log them in using the EVE login button on the dashboard.</p>
+    <%= image_tag 'manual_images/5-min.png', class: 'manual-image' %>
+    <p>If they are on a different account to your main then you may need to hit cancel on the EVE login screen and log into your other accounts.</p>
+    <%= image_tag 'manual_images/6-min.png', class: 'manual-image' %>
+    <%= image_tag 'manual_images/7-min.png', class: 'manual-image' %>
+    <%= image_tag 'manual_images/8-min.png', class: 'manual-image' %>
+    <p>Following logging in your alt character they should be added to the list of alt accounts on your dashboard.</p>
+    <%= image_tag 'manual_images/9-min.png', class: 'manual-image' %>
+    <p>To remove a Alt Character just click the remove button.</p>
+
+    <h4 id="settings">Configuring your settings</h4>
+
+    <p>Before running your first sync we first need to setup what you would like sync'd. Click the Edit Settings button on you dashboard.</p>
+    <%= image_tag 'manual_images/10-min.png', class: 'manual-image' %>
+    <p>Now select which level of contacts you would like to sync up (you can select as many as you would like).</p>
+    <%= image_tag 'manual_images/11-min.png', class: 'manual-image' %>
+    <p>Finally click update to save these settings</p>
+
+    <h4 id="sync">Running a Sync</h4>
+
+    <p>To run a sync go to your dashboard and click Sync on the Alt Character you would like sync'd and wait for the confirmation message that it is complete before clicking the next.</p>
+    <%= image_tag 'manual_images/12-min.png', class: 'manual-image' %><br><br>
+
+    <h4 id="premium">Premium Features</h4>
+
+    <p>Premium settings are enabled once you have upgraded your account by following these <%= link_to "instructions", premium_path, class: 'text-link' %>.</p>
+    <p>To setup your premium features, go to the settings page from your dashboard.</p>
+    <h5>Auto Sync</h5>
+    <p>In order to setup Auto Sync, just select which contacts you would like sync'd automatically and check the box labeled "Automatically Sync Contacts" and contacts will be sync'd as new ones are added in-game.</p>
+    <%= image_tag 'manual_images/13-min.png', class: 'manual-image' %><br><br>
+    <h5>Assigning contacts to labels</h5>
+    <p>To assign labels to the sync'd contacts you need to first create a label on each Alt in-game, this can be done in "People & Places".</p>
+    <p>Click the manage labels button.</p>
+    <%= image_tag 'manual_images/14-min.png', class: 'manual-image' %>
+    <p>Give your label a name and click Create.</p>
+    <%= image_tag 'manual_images/15-min.png', class: 'manual-image' %>
+    <p>Back in Alt Contact Sync, you can now go to your settings and for each Alt select the label you want the contacts assigned to (Labels may take 5 mins to appear in the app after first creating them).</p>
+    <%= image_tag 'manual_images/16-min.png', class: 'manual-image' %>
+    <p>Any past contacts will have the label added to them on the next sync.</p>
+  </div>
+</div>
