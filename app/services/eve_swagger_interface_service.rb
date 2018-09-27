@@ -35,6 +35,21 @@ class EveSwaggerInterfaceService
   end
 
   def create_contacts(standing:, contacts:, labels: [])
+    response = self.class.post(
+      "/characters/#{@user.character_id}/contacts/",
+      headers: {
+        'Content-Type' => 'application/json',
+        'Accept' => 'application/json'
+      },
+      body: contacts.to_json,
+      query: {
+        standing: standing,
+        watched: false,
+        label_ids: labels
+      }.merge(base_params.merge(authorize_params)))
+  end
+
+  def update_contacts(standing:, contacts:, labels: [])
     response = self.class.put(
       "/characters/#{@user.character_id}/contacts/",
       headers: {

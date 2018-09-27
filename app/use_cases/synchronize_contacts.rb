@@ -52,9 +52,10 @@ class SynchronizeContacts
     sorted_contacts.each do |standing,contact_ids|
       contact_ids.each_slice(100) do |contact_slice|
         alt_esi_service.create_contacts(standing: standing, contacts: contact_slice, labels: labels)
+        alt_esi_service.update_contacts(standing: standing, contacts: contact_slice, labels: labels)
+        @total_syncs += contact_slice.count
       end
     end
-    @total_syncs += 1
   end
 
   def seperate_by_standing(contacts)
