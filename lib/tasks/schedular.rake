@@ -7,6 +7,12 @@ end
 
 desc "Updates Contacts for all Premium Users"
 task :sync_contacts => :environment do
+  if SyncJob.where(finished_at: nil).present?
+    puts "Skipped Premium Sync as previous job is still running"
+    return
+  end
+  job = SyncJob.create(started_at: Time.now)
+
   puts "Syncing Premium Users Contacts..."
   errors = {}
   job_start = Time.now
@@ -27,4 +33,7 @@ task :sync_contacts => :environment do
   end
   SyncStat.create(job_started: job_start, job_finished: Time.now, contact_count: sync_count, success: true, job_type: :scheduled)
   puts "Done."
+  job.update(finished_at: Time.now)
+
+  SyncJob.where('finished_at < ?', 1.week.ago).delete_all
 end
