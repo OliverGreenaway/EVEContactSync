@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180927060920) do
+ActiveRecord::Schema.define(version: 20180928005108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 20180927060920) do
     t.string "ally_id"
     t.string "role"
     t.boolean "viewed_manual", default: false
+    t.string "char_contact_hash"
+    t.string "corp_contact_hash"
+    t.string "ally_contact_hash"
   end
 
 end
