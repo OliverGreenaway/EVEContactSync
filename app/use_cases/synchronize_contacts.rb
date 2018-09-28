@@ -1,3 +1,4 @@
+require 'digest'
 class SynchronizeContacts
   include UseCase
 
@@ -15,10 +16,10 @@ class SynchronizeContacts
       synchronize_character_contacts if @user.settings.sync_char_contacts
       synchronize_corporation_contacts if @user.settings.sync_corp_contacts
       synchronize_alliance_contacts if @user.settings.sync_ally_contacts
-      if @total_syncs == 0
-        errors[:sync] << "No contacts synchronized, ensure you have enabled syncing of at least one contact type in settings."
-      else
+      if @user.settings.sync_char_contacts || @user.settings.sync_corp_contacts || @user.settings.sync_ally_contacts
         @alt.update(last_sync: Time.now)
+      else
+        errors[:sync] << "No contacts synchronized, ensure you have enabled syncing of at least one contact type in settings."
       end
     else
       errors[:sync] << "#{@alt.name} not Synced, Each Alt Character can only be synced every 5 minutes."
@@ -29,15 +30,30 @@ class SynchronizeContacts
   private
 
   def synchronize_character_contacts
-    sync_contacts(main_esi_service.character_contacts)
+    char_contacts = main_esi_service.character_contacts
+    hashed_contacts = Digest::SHA1.hexdigest(char_contacts.to_s)
+    if hashed_contacts != @user.char_contact_hash
+      sync_contacts(char_contacts)
+      @user.update(char_contact_hash: hashed_contacts)
+    end
   end
 
   def synchronize_corporation_contacts
-    sync_contacts(main_esi_service.corporation_contacts)
+    corp_contacts = main_esi_service.corporation_contacts
+    hashed_contacts = Digest::SHA1.hexdigest(corp_contacts.to_s)
+    if hashed_contacts != @user.corp_contact_hash
+      sync_contacts(corp_contacts)
+      @user.update(corp_contact_hash: hashed_contacts)
+    end
   end
 
   def synchronize_alliance_contacts
-    sync_contacts(main_esi_service.alliance_contacts)
+    ally_contacts = main_esi_service.alliance_contacts
+    hashed_contacts = Digest::SHA1.hexdigest(ally_contacts.to_s)
+    if hashed_contacts != @user.ally_contact_hash
+      sync_contacts(ally_contacts)
+      @user.update(ally_contact_hash: hashed_contacts)
+    end
   end
 
   def sync_contacts(contacts)
