@@ -22,7 +22,8 @@ task :sync_contacts => :environment do
         sync = SynchronizeContacts.perform(user: premium_user, alt: alt_character, source: :auto)
         sync_count += sync.total_syncs
         unless sync.success?
-          errors[premium_user.id][alt_character.id] = errors
+          errors[premium_user.id.to_s] ||= {}
+          errors[premium_user.id.to_s][alt_character.id.to_s] = errors
         end
       end
     end
