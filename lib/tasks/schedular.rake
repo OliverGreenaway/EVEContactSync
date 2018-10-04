@@ -35,6 +35,9 @@ task :sync_contacts => :environment do
     puts "Done."
     job.update(finished_at: Time.now)
 
+    if SyncStat.count > 5000
+      SyncStat.first(SyncStat.count % 5000).delete_all
+    end
     SyncJob.where('finished_at < ?', 1.week.ago).delete_all
   end
 end
