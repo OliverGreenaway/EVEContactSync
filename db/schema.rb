@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180928005108) do
+ActiveRecord::Schema.define(version: 20181020055244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20180928005108) do
     t.datetime "last_sync"
     t.integer "label_id", default: 0
     t.string "label_name", default: "None"
+    t.string "char_contact_hash"
+    t.string "corp_contact_hash"
+    t.string "ally_contact_hash"
   end
 
   create_table "premium_payments", force: :cascade do |t|
@@ -44,9 +47,9 @@ ActiveRecord::Schema.define(version: 20180928005108) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.boolean "sync_char_contacts", default: false
-    t.boolean "sync_corp_contacts", default: false
-    t.boolean "sync_ally_contacts", default: false
+    t.boolean "sync_char_contacts", default: true
+    t.boolean "sync_corp_contacts", default: true
+    t.boolean "sync_ally_contacts", default: true
     t.integer "user_id"
     t.boolean "auto_sync_contacts", default: false
   end
@@ -85,9 +88,6 @@ ActiveRecord::Schema.define(version: 20180928005108) do
     t.string "ally_id"
     t.string "role"
     t.boolean "viewed_manual", default: false
-    t.string "char_contact_hash"
-    t.string "corp_contact_hash"
-    t.string "ally_contact_hash"
   end
 
 end

@@ -32,27 +32,27 @@ class SynchronizeContacts
   def synchronize_character_contacts
     char_contacts = main_esi_service.character_contacts
     hashed_contacts = Digest::SHA1.hexdigest(char_contacts.to_s)
-    if hashed_contacts != @user.char_contact_hash
+    if hashed_contacts != @alt.char_contact_hash
       sync_contacts(char_contacts)
-      @user.update(char_contact_hash: hashed_contacts)
+      @alt.update(char_contact_hash: hashed_contacts)
     end
   end
 
   def synchronize_corporation_contacts
     corp_contacts = main_esi_service.corporation_contacts
     hashed_contacts = Digest::SHA1.hexdigest(corp_contacts.to_s)
-    if hashed_contacts != @user.corp_contact_hash
+    if hashed_contacts != @alt.corp_contact_hash
       sync_contacts(corp_contacts)
-      @user.update(corp_contact_hash: hashed_contacts)
+      @alt.update(corp_contact_hash: hashed_contacts)
     end
   end
 
   def synchronize_alliance_contacts
     ally_contacts = main_esi_service.alliance_contacts
     hashed_contacts = Digest::SHA1.hexdigest(ally_contacts.to_s)
-    if hashed_contacts != @user.ally_contact_hash
+    if hashed_contacts != @alt.ally_contact_hash
       sync_contacts(ally_contacts)
-      @user.update(ally_contact_hash: hashed_contacts)
+      @alt.update(ally_contact_hash: hashed_contacts)
     end
   end
 
